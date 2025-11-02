@@ -40,7 +40,7 @@ CREATE TABLE Pagos(
     id_pago INT AUTO_INCREMENT PRIMARY KEY,
     id_reserva INT NOT NULL,
     monto DECIMAL(10,2) NOT NULL,
-    metodo_pago ENUM('Efectivo','Tarjeta','Transferencia','MercadoPago') NOT NULL,
+    metodo_pago ENUM('Efectivo','Tarjeta','Efectivo','MercadoPago') NOT NULL,
     fecha_pago DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_reserva) REFERENCES Reservas(id_reserva)
 );
