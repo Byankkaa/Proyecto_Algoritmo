@@ -68,10 +68,63 @@ fecha date not null,
 foreign key (id_cancha) references Canchas(id_cancha)
 );
 
-Create table Supervisores(
-id_supervisor int auto_increment primary key,
+Create table Cancheros(
+id_canchero int auto_increment primary key,
 dni varchar(8) not null unique,
 nombre varchar(100) not null,
 Horario varchar(50),
 Sueldo decimal(10,2)
 );
+
+Insert Into Canchas(tipo,precio_hora,estado)
+Values
+('Fútbol 5',35000,'Disponible'),
+('Fútbol 8',80000,'Disponible'),
+('Fútbol 11',150000,'Mantenimiento');
+
+Insert Into Cancheros(nombre,telefono,dni,sueldo)
+Values
+('Brian Cruz','1134567890','30111222',350000),
+('Martina Orlandi','1122233344','28455679',370000);
+
+
+Insert Into Clientes(nombre,telefono,dni)
+Values
+('Thiago Viana','1122454312','40865431'),
+('Daniela Mansilla','11875432','40986722'),
+('Maximiliano Viera','11777332','40232665'),
+('Fransisco Gutierrez','11088654','40877682');
+
+Insert Into Horarios(hora_inicio,hora_fin,tipo,dia_semana)
+Values
+('10:00','11:00','Mañana','Lunes'),
+('18:00','19:00','Tarde','Viernes'),
+('21:00','22:00','Noche','Sabado'),
+('15:00','16:00','Tarde','Domingo');
+
+insert Into Reservas(id_cliente,id_cancha,id_horario,id_recepcionista,fecha_reserva,estado_pago)
+Values
+(1,1,1,1,'2025-10-20','Pagado'),
+(2,2,2,2,'2025-10-21','Pendiente'),
+(3,3,3,3,'2025-11-04','Pendiente'),
+(4,1,4,1,'2025-10-30','Pagado');
+
+Insert Into Pagos(id_reserva,monto,metodo_pago)
+Values
+(1,80000,'MercadoPago'),
+(4,150000,'Tarjeta');
+
+Insert Into Facturas(id_pago,fecha_emision,total)
+Values
+(1,'2025-10-20',35000),
+(4,'2025-10-30',150000);
+
+Insert Into Mantenimiento_Canchas(id_cancha,tipo_mantenimiento,costo,estado,fecha)
+Values
+(2,'Cambio de césped',30000,'Finalizado','2025-09-10'),
+(3,'Revision de luces',20000,'Pendiente','2025-09-25');
+
+
+
+
+
