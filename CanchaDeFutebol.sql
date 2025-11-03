@@ -6,7 +6,7 @@ CREATE TABLE Clientes(
     id_cliente INT AUTO_INCREMENT PRIMARY KEY,
     dni VARCHAR(8) NOT NULL UNIQUE,
     nombre VARCHAR(100) NOT NULL,
-    telefono VARCHAR(20)
+    telefono INT(10)
 );
 
 CREATE TABLE Canchas(
