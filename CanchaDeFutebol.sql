@@ -76,45 +76,62 @@ INSERT INTO Canchas (tipo, precio_hora, estado)
 VALUES
 ('Fútbol 5', 35000, 'Disponible'),
 ('Fútbol 8', 80000, 'Disponible'),
-('Fútbol 11', 150000, 'Mantenimiento');
+('Fútbol 11', 150000, 'Mantenimiento'),
+('Fútbol 7',60000, 'Disponible'),
+('Fútbol 9',100000,'Ocupada');
 
 INSERT INTO Cancheros (nombre, telefono, dni, sueldo)
  VALUES
 ('Brian Cruz', '1134567890', '30111222', 350000),
-('Martina Orlandi', '1122233344', '28455679', 370000);
+('Martina Orlandi', '1122233344', '28455679', 370000)
+('Alvin Viana','1167893210','29566789',360000),
+('Luna Viana','1145687721','312222333'355000),
+('Juan Peron','1144890092','29999888'365000);
 
 INSERT INTO Clientes (nombre, telefono, dni) 
 VALUES
 ('Thiago Viana', '1122454312', '40865431'),
 ('Daniela Mansilla', '11875432', '40986722'),
 ('Maximiliano Viera', '11777332', '40232665'),
-('Francisco Gutierrez', '11088654', '40877682');
+('Francisco Gutierrez', '11088654', '40877682'),
+('Faustino Sarmiento','1176543210','407888900');
 
 INSERT INTO Horarios (hora_inicio, hora_fin, tipo_turno, dia_semana) 
 VALUES
 ('10:00', '11:00', 'Mañana', 'Lunes'),
 ('18:00', '19:00', 'Tarde', 'Viernes'),
 ('21:00', '22:00', 'Noche', 'Sabado'),
-('15:00', '16:00', 'Tarde', 'Domingo');
+('15:00', '16:00', 'Tarde', 'Domingo'),
+('09:00', '10:00', 'Mañana', 'Martes');
 
 INSERT INTO Reservas (id_cliente, id_cancha, id_horario, fecha_reserva, estado_pago) 
 VALUES
 (1, 1, 1, '2025-10-20', 'Pagado'),
 (2, 2, 2, '2025-10-21', 'Pendiente'),
 (3, 3, 3, '2025-11-04', 'Pendiente'),
-(4, 1, 4, '2025-10-30', 'Pagado');
+(4, 1, 4, '2025-10-30', 'Pagado'),
+(5, 2, 5, '2025-10-25', 'Pendiente');
 
 INSERT INTO Pagos (id_reserva, monto, metodo_pago) 
 VALUES
 (1, 35000, 'Transferencia'),
-(4, 150000, 'Tarjeta');
+(2, 80000, 'Tarjeta'),
+(3, 150000, 'Transferencia'),
+(4, 60000, 'MercadoPago'),
+(5, 100000, 'Tarjeta');
 
 INSERT INTO Facturas (id_pago, fecha_emision, total)
  VALUES
 (1, '2025-10-20', 35000),
-(2, '2025-10-30', 150000);
+(2, '2025-10-30', 80000),
+(3, '2025-11-04', 150000),
+(4, '2025-10-30', 60000),
+(5, '2025-10-25', 100000);
 
 INSERT INTO Mantenimiento_Canchas (id_cancha, tipo_mantenimiento, costo, estado, fecha) 
 VALUES
 (2, 'Cambio de césped', 30000, 'Finalizado', '2025-09-10'),
-(3, 'Revisión de luces', 20000, 'Pendiente', '2025-09-25');
+(3, 'Revisión de luces', 20000, 'Pendiente', '2025-09-25'),
+(1, 'Limpieza General', 5000, 'Finalizado', '2025-09-25'),
+(2, 'Cambio de red', 8000, 'Finalizado', '2025-09-15'),
+(5, 'Cambio de reflectores', 12000, 'Pendiente', '2025-10-02');
