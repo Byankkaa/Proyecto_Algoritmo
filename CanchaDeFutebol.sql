@@ -67,7 +67,7 @@ CREATE TABLE Cancheros(
     id_canchero INT AUTO_INCREMENT PRIMARY KEY,
     dni VARCHAR(8) NOT NULL UNIQUE,
     nombre VARCHAR(100) NOT NULL,
-    telefono VARCHAR(20),
+    telefono INT(10),
     horario VARCHAR(50),
     sueldo DECIMAL(10,2)
 );
