@@ -106,7 +106,7 @@ VALUES
 
 INSERT INTO Pagos (id_reserva, monto, metodo_pago) 
 VALUES
-(1, 35000, 'MercadoPago'),
+(1, 35000, 'Transferencia'),
 (4, 150000, 'Tarjeta');
 
 INSERT INTO Facturas (id_pago, fecha_emision, total)
