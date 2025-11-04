@@ -135,3 +135,4 @@ VALUES
 (1, 'Limpieza General', 5000, 'Finalizado', '2025-09-25'),
 (2, 'Cambio de red', 8000, 'Finalizado', '2025-09-15'),
 (5, 'Cambio de reflectores', 12000, 'Pendiente', '2025-10-02');
+
