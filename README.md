@@ -9,3 +9,6 @@ Francisco Gutierrez
 Brian Cruz
 Thiago Viana
 Martina Orlandi
+
+
+Codigo SQL realizado por Thiago Viana
