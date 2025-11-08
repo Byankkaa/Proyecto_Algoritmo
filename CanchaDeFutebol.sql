@@ -40,7 +40,7 @@ CREATE TABLE Pagos(
     id_pago INT AUTO_INCREMENT PRIMARY KEY,
     id_reserva INT NOT NULL,
     monto DECIMAL(10,2) NOT NULL,
-    metodo_pago ENUM('Efectivo','Tarjeta','Efectivo','Transferencia') NOT NULL,
+    metodo_pago ENUM('Efectivo','Tarjeta','Transferencia') NOT NULL,
     fecha_pago DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_reserva) REFERENCES Reservas(id_reserva)
 );
@@ -83,10 +83,10 @@ VALUES
 INSERT INTO Cancheros (nombre, telefono, dni, sueldo)
  VALUES
 ('Brian Cruz', '1134567890', '30111222', 350000),
-('Martina Orlandi', '1122233344', '28455679', 370000)
+('Martina Orlandi', '1122233344', '28455679', 370000),
 ('Alvin Viana','1167893210','29566789',360000),
-('Luna Viana','1145687721','312222333'355000),
-('Juan Peron','1144890092','29999888'365000);
+('Luna Viana','1145687721','31222333',355000),
+('Juan Peron','1144890092','29999888', 365000);
 
 INSERT INTO Clientes (nombre, telefono, dni) 
 VALUES
@@ -94,7 +94,7 @@ VALUES
 ('Daniela Mansilla', '11875432', '40986722'),
 ('Maximiliano Viera', '11777332', '40232665'),
 ('Francisco Gutierrez', '11088654', '40877682'),
-('Faustino Sarmiento','1176543210','407888900');
+('Faustino Sarmiento','1176543210','40788900');
 
 INSERT INTO Horarios (hora_inicio, hora_fin, tipo_turno, dia_semana) 
 VALUES
@@ -117,7 +117,7 @@ VALUES
 (1, 35000, 'Transferencia'),
 (2, 80000, 'Tarjeta'),
 (3, 150000, 'Transferencia'),
-(4, 60000, 'MercadoPago'),
+(4, 60000, 'Efectivo'),
 (5, 100000, 'Tarjeta');
 
 INSERT INTO Facturas (id_pago, fecha_emision, total)
@@ -135,4 +135,3 @@ VALUES
 (1, 'Limpieza General', 5000, 'Finalizado', '2025-09-25'),
 (2, 'Cambio de red', 8000, 'Finalizado', '2025-09-15'),
 (5, 'Cambio de reflectores', 12000, 'Pendiente', '2025-10-02');
-
