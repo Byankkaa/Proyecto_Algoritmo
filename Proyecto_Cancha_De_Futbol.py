@@ -19,6 +19,26 @@ def ConectarBase():
             print(err)
 ConectarBase()
 
+def ConsultaSelect():
+    Consulta = "SELECT r.id_reserva, c.nombre AS cliente, ca.tipo AS cancha, h.hora_inicio, h.hora_fin, h.dia_semana, r.fecha_reserva, r.estado_pago FROM Reservas r Inner JOIN Clientes c ON r.id_cliente = c.id_cliente Inner JOIN Canchas ca ON r.id_cancha = ca.id_cancha Inner JOIN Horarios h ON r.id_horario = h.id_horario;"
+    cursor.execute(Consulta)
+
+    Consulta="SELECT ca.tipo AS cancha, SUM(p.monto) AS ingresos_totales FROM Pagos p Inner JOIN Reservas r ON p.id_reserva = r.id_reserva Inner JOIN Canchas ca ON r.id_cancha = ca.id_cancha GROUP BY ca.tipo;"
+    cursor.execute(Consulta)
+
+    Consulta="SELECT tipo, precio_hora FROM Canchas WHERE estado = 'Disponible';"
+    cursor.execute(Consulta)
+
+    Consulta="SELECT r.id_reserva, c.nombre AS cliente, ca.tipo AS cancha, r.fecha_reserva FROM Reservas r Inner JOIN Clientes c ON r.id_cliente = c.id_cliente Inner JOIN Canchas ca ON r.id_cancha = ca.id_cancha WHERE r.estado_pago = 'Pendiente';"
+    cursor.execute(Consulta)
+
+    Consulta="SELECT ca.tipo AS cancha, m.tipo_mantenimiento, m.costo, m.estado, m.fecha FROM Mantenimiento_Canchas m Inner JOIN Canchas ca ON m.id_cancha = ca.id_cancha ORDER BY m.fecha DESC;"
+    cursor.execute(Consulta)
+
+
+    return cursor.fetchall()
+
+
 #Hasta acá es copypaste de la teoria que tenemos en classroom
 
 def Insertar_Clientes(dni,nombre,telefono):
