@@ -14,3 +14,5 @@ Brian Cruz
 Thiago Viana Leiba
 
 Martina Orlandi (c)
+
+DER realizado por Francisco Gutierrez
