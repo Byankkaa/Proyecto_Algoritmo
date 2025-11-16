@@ -14,3 +14,5 @@ Brian Cruz
 Thiago Viana Leiba
 
 Martina Orlandi (c)
+
+Consultas SQL realizadas por Brian Cruz
