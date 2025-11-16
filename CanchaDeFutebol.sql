@@ -68,7 +68,7 @@ CREATE TABLE Cancheros(
     dni VARCHAR(8) NOT NULL UNIQUE,
     nombre VARCHAR(100) NOT NULL,
     telefono INT(10),
-    horario VARCHAR(50),
+    horario VARCHAR(100),
     sueldo DECIMAL(10,2)
 );
 
@@ -80,13 +80,13 @@ VALUES
 ('Fútbol 7',60000, 'Disponible'),
 ('Fútbol 9',100000,'Ocupada');
 
-INSERT INTO Cancheros (nombre, telefono, dni, sueldo)
+INSERT INTO Cancheros (nombre, telefono, dni, sueldo, horario)
  VALUES
-('Brian Cruz', '1134567890', '30111222', 350000),
-('Martina Orlandi', '1122233344', '28455679', 370000),
-('Alvin Viana','1167893210','29566789',360000),
-('Luna Viana','1145687721','31222333',355000),
-('Juan Peron','1144890092','29999888', 365000);
+('Brian Cruz', '1134567890', '30111222', 350000, 'Lunes a Viernes 8:00-16:00'),
+('Martina Orlandi', '1122233344', '28455679', 370000,'Martes a Sábado 14:00-22:00'),
+('Alvin Viana','1167893210','29566789',360000, 'Lunes a Domingo 18:00-02:00'),
+('Luna Viana','1145687721','31222333',355000, 'Sábado y Domingo 10:00-18:00'),
+('Juan Peron','1144890092','29999888', 365000, 'Miércoles a Domingo 12:00-20:00');
 
 INSERT INTO Clientes (nombre, telefono, dni) 
 VALUES
