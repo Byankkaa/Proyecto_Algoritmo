@@ -7,7 +7,7 @@ def ConectarBase():
 
    global cnx, cursor
    try:
-    cnx = mysql.connector.connect(user="root", password="", host="Localhost", database="canchas_futbol")
+    cnx = mysql.connector.connect(user="root", password="", host="Localhost", database="CanchaDeFutebol")
     cursor = cnx.cursor(dictionary=True)
     print('Conexión establecida')
    except mysql.connector.Error as err:
@@ -334,3 +334,4 @@ def Menu_Ingresar_Datos(): #Menu para ingresar datos
         print("Opcion no valida, intente de nuevo")
     
 Menu()
+
