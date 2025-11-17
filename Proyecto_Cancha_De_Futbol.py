@@ -32,22 +32,35 @@ def Consulta2():
     cursor.execute(Consulta)
     return cursor.fetchall()
 
-
 def Consulta3():
-    estado= str(input("Ingrese el estado de la cancha (Disponible / Ocupado / Mantenimiento): "))
+    respuesta=str(input("Desea buscar en base a otro tipo de estado (SI / NO)? (Si elige no va a ser en base a disponibles): ")).strip()
+    if respuesta.lower() == "si":
+        estado= str(input("Ingrese el estado de la cancha (Ocupado / Mantenimiento): "))
 
-    Consulta="SELECT tipo, precio_hora FROM Canchas WHERE estado = 'Disponible';"
-    cursor.execute(Consulta, (estado,))
-    return cursor.fetchall()
-
+        Consulta="SELECT tipo, precio_hora FROM Canchas WHERE estado = %s;"
+        cursor.execute(Consulta, (estado,))
+        return cursor.fetchall()
+    else:
+        print("Buscando en base a canchas disponibles...")
+        Consulta="SELECT tipo, precio_hora FROM Canchas WHERE estado = 'Disponible';"
+        cursor.execute(Consulta)
+        return cursor.fetchall()
 
 def Consulta4():
-    estado_pago= str(input("Ingrese el estado de pago (Pagado / Pendiente / Cancelado): "))
+    respuesta=str(input("Desea buscar en base a otro estado de pago (SI / NO)? (Si elige la opción NO va a ser en base a Pendiente): "))
+    if respuesta.lower() == "si":
+        estado_pago= str(input("Ingrese el estado de pago (Pagado / Cancelado): "))
 
-    Consulta="SELECT r.id_reserva, c.nombre AS cliente, ca.tipo AS cancha, r.fecha_reserva FROM Reservas r Inner JOIN Clientes c ON r.id_cliente = c.id_cliente Inner JOIN Canchas ca ON r.id_cancha = ca.id_cancha WHERE r.estado_pago = 'Pendiente';"
-    cursor.execute(Consulta, (estado_pago,))
+        Consulta="SELECT r.id_reserva, c.nombre AS cliente, ca.tipo AS cancha, r.fecha_reserva FROM Reservas r Inner JOIN Clientes c ON r.id_cliente = c.id_cliente Inner JOIN Canchas ca ON r.id_cancha = ca.id_cancha WHERE r.estado_pago = %s;"
+        cursor.execute(Consulta, (estado_pago,))
 
-    return cursor.fetchall()
+        return cursor.fetchall()
+    else:
+        print("Buscando en base a pendientes...")
+        Consulta="SELECT r.id_reserva, c.nombre AS cliente, ca.tipo AS cancha, r.fecha_reserva FROM Reservas r Inner JOIN Clientes c ON r.id_cliente = c.id_cliente Inner JOIN Canchas ca ON r.id_cancha = ca.id_cancha WHERE r.estado_pago = 'Pendiente';"
+        cursor.execute(Consulta)
+
+        return cursor.fetchall()
 
 def Consulta5():
 
@@ -85,12 +98,20 @@ def Consulta9():
     return cursor.fetchall()
 
 def Consulta10():
-    dia= str(input("Ingrese el día de la semana (Lunes / Martes / Miércoles / Jueves / Viernes / Sábado / Domingo): "))
+    respuesta=str(input("Desea cambiar el día (SI / NO)? (Si elige la opción NO va a ser en base a Viernes)"))
+    if respuesta.lower == "si":
+        dia= str(input("Ingrese el día de la semana (Lunes / Martes / Miércoles / Jueves / Sábado / Domingo): "))
 
-    Consulta="SELECT c.id_cancha, cl.nombre as Cliente, h.hora_inicio, h.hora_fin FROM Reservas r INNER JOIN canchas c on r.id_cancha = c.id_cancha INNER JOIN clientes cl on cl.id_cliente = r.id_cliente INNER JOIN horarios h on h.id_horario = r.id_horario WHERE h.dia_semana = 'Viernes';"
-    cursor.execute(Consulta, (dia,))
+        Consulta="SELECT c.id_cancha, cl.nombre as Cliente, h.hora_inicio, h.hora_fin FROM Reservas r INNER JOIN canchas c on r.id_cancha = c.id_cancha INNER JOIN clientes cl on cl.id_cliente = r.id_cliente INNER JOIN horarios h on h.id_horario = r.id_horario WHERE h.dia_semana = %s;"
+        cursor.execute(Consulta, (dia,))
 
-    return cursor.fetchall()
+        return cursor.fetchall()
+    else:
+        print("Buscando las reservas de los Viernes...")
+        Consulta="SELECT c.id_cancha, cl.nombre as Cliente, h.hora_inicio, h.hora_fin FROM Reservas r INNER JOIN canchas c on r.id_cancha = c.id_cancha INNER JOIN clientes cl on cl.id_cliente = r.id_cliente INNER JOIN horarios h on h.id_horario = r.id_horario WHERE h.dia_semana = 'Viernes';"
+        cursor.execute(Consulta, (dia,))
+
+        return cursor.fetchall()
 
 def Menu_Consultas():
     while True:
@@ -106,6 +127,34 @@ def Menu_Consultas():
         print("9. Métodos de pago")
         print("10. Reservas por día de la semana")
         print("0. Salir")
+    
+        opcion = input("Ingrese una opción: ")
+
+        if opcion == "1":
+            print(Consulta1())
+        elif opcion == "2":
+            print(Consulta2())
+        elif opcion == "3":
+            print(Consulta3())
+        elif opcion == "4":
+            print(Consulta4())
+        elif opcion == "5":
+            print(Consulta5())
+        elif opcion == "6":
+            print(Consulta6())
+        elif opcion == "7":
+            print(Consulta7())
+        elif opcion == "8":
+            print(Consulta8())
+        elif opcion == "9":
+            print(Consulta9())
+        elif opcion == "10":
+            print(Consulta10())
+        elif opcion == "0":
+            print("Saliendo del menú...")
+            break
+        else:
+            print("Opción inválida, intente de nuevo.")
 
 #Hasta acá es copypaste de la teoria que tenemos en classroom
 
@@ -216,7 +265,7 @@ def Menu(): #Esto va ultimo, es el menu principal, pero lo queria hacer ahora pa
         Menu_Ingresar_Datos()
         Menu()
     elif sel == 3:
-        print("Consultas no implementadas aun")
+        Menu_Consultas()
         Menu()
     elif sel == 4:
         print("Saliendo del programa...")
