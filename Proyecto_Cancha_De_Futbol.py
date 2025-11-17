@@ -30,19 +30,22 @@ def Consulta2():
 
     Consulta="SELECT ca.tipo AS cancha, SUM(p.monto) AS ingresos_totales FROM Pagos p Inner JOIN Reservas r ON p.id_reserva = r.id_reserva Inner JOIN Canchas ca ON r.id_cancha = ca.id_cancha GROUP BY ca.tipo;"
     cursor.execute(Consulta)
-
     return cursor.fetchall()
+
 
 def Consulta3():
+    estado= str(input("Ingrese el estado de la cancha (Disponible / Ocupado / Mantenimiento): "))
 
     Consulta="SELECT tipo, precio_hora FROM Canchas WHERE estado = 'Disponible';"
-    cursor.execute(Consulta)
-
+    cursor.execute(Consulta, (estado,))
     return cursor.fetchall()
 
+
 def Consulta4():
+    estado_pago= str(input("Ingrese el estado de pago (Pagado / Pendiente / Cancelado): "))
+
     Consulta="SELECT r.id_reserva, c.nombre AS cliente, ca.tipo AS cancha, r.fecha_reserva FROM Reservas r Inner JOIN Clientes c ON r.id_cliente = c.id_cliente Inner JOIN Canchas ca ON r.id_cancha = ca.id_cancha WHERE r.estado_pago = 'Pendiente';"
-    cursor.execute(Consulta)
+    cursor.execute(Consulta, (estado_pago,))
 
     return cursor.fetchall()
 
@@ -82,12 +85,27 @@ def Consulta9():
     return cursor.fetchall()
 
 def Consulta10():
+    dia= str(input("Ingrese el día de la semana (Lunes / Martes / Miércoles / Jueves / Viernes / Sábado / Domingo): "))
 
     Consulta="SELECT c.id_cancha, cl.nombre as Cliente, h.hora_inicio, h.hora_fin FROM Reservas r INNER JOIN canchas c on r.id_cancha = c.id_cancha INNER JOIN clientes cl on cl.id_cliente = r.id_cliente INNER JOIN horarios h on h.id_horario = r.id_horario WHERE h.dia_semana = 'Viernes';"
-    cursor.execute(Consulta)
+    cursor.execute(Consulta, (dia,))
 
     return cursor.fetchall()
 
+def Menu_Consultas():
+    while True:
+        print("\n========= MENÚ CONSULTAS =========")
+        print("1. Muestra todas las reservas junto al cliente, fecha y hora más el estado del pago")
+        print("2. Ingresos totales de los distintos tipos de cancha")
+        print("3. Muestra el tipo y precio por horas de las canchas")
+        print("4. Muestra las reservas, el cliente, el tipo de cancha, la fecha y el estado de pago")
+        print("5. Muestra el tipo de cancha, mantenimiento, costo, estado y la fecha de las canchas (en orden descendiente)")
+        print("6. Listar canchas")
+        print("7. Listar clientes")
+        print("8. Estadísticas mantenimiento")
+        print("9. Métodos de pago")
+        print("10. Reservas por día de la semana")
+        print("0. Salir")
 
 #Hasta acá es copypaste de la teoria que tenemos en classroom
 
