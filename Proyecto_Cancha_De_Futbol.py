@@ -113,6 +113,18 @@ def Consulta10():
 
         return cursor.fetchall()
 
+def Consulta11():
+    respuesta=str(input("Desea ordenar las canchas por precio o por tipo?: "))
+    if respuesta.lower=="precio":
+        print("Ordenando las canchas por precio...")
+        Consulta="SELECT * FROM Canchas ORDER BY precio_hora ASC;"
+        cursor.execute(Consulta)
+        return cursor.fetchall()
+    else:
+        print("Ordenando las canchas por tipo...")
+        Consulta="SELECT * FROM Canchas ORDER BY tipo ASC;"
+        return cursor.fetchall(Consulta)
+
 def Menu_Consultas():
     while True:
         print("\n========= MENÚ CONSULTAS =========")
@@ -126,6 +138,7 @@ def Menu_Consultas():
         print("8. Estadísticas mantenimiento")
         print("9. Métodos de pago")
         print("10. Reservas por día de la semana")
+        print("11. Canchas ordenadas por precio o tipo")
         print("0. Salir")
     
         opcion = input("Ingrese una opción: ")
@@ -150,13 +163,14 @@ def Menu_Consultas():
             print(Consulta9())
         elif opcion == "10":
             print(Consulta10())
+        elif opcion =="11":
+            print(Consulta11())
         elif opcion == "0":
             print("Saliendo del menú...")
             break
         else:
             print("Opción inválida, intente de nuevo.")
 
-#Hasta acá es copypaste de la teoria que tenemos en classroom
 
 def Insertar_Clientes(dni,nombre,telefono):
     sql = "INSERT INTO Clientes(dni, nombre, telefono)VALUES( %s, %s, %s)"
@@ -250,7 +264,7 @@ def Matriz_Horarios():
 
 
 
-def Menu(): #Esto va ultimo, es el menu principal, pero lo queria hacer ahora para que ya lo tengamos
+def Menu(): 
     print("-----Menu Cancha de Futbol-----")
     print("1. Ver horarios disponibles")
     print("2. Ingresar datos")
@@ -274,7 +288,7 @@ def Menu(): #Esto va ultimo, es el menu principal, pero lo queria hacer ahora pa
         exit()
 
 
-def Menu_Ingresar_Datos(): #Menu para ingresar datos
+def Menu_Ingresar_Datos(): 
     Matriz = Matriz_Horarios()
     print("-----Menu Ingresar Datos-----")
     print("1. Ingresar Cliente")
@@ -334,4 +348,3 @@ def Menu_Ingresar_Datos(): #Menu para ingresar datos
         print("Opcion no valida, intente de nuevo")
     
 Menu()
-
