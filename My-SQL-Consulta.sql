@@ -62,3 +62,7 @@ INNER JOIN canchas c on r.id_cancha = c.id_cancha
 INNER JOIN clientes cl on cl.id_cliente = r.id_cliente
 INNER JOIN horarios h on h.id_horario = r.id_horario
 WHERE h.dia_semana = 'Viernes';
+
+SELECT *
+FROM Canchas
+ORDER BY tipo ASC, precio_hora ASC;
