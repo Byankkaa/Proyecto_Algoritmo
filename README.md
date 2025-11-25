@@ -15,4 +15,4 @@ Thiago Viana Leiba
 
 Martina Orlandi (c)
 
-![image alt](https://github.com/Byankkaa/Proyecto_Algoritmo/blob/169e455105995a7f7da2cbd8ac22a665d100acb1/logodecancha.png)
+![image alt](https://github.com/Byankkaa/Proyecto_Algoritmo/blob/d8dafd3b3435951bf4f4040c9df2c168be71dc7e/logodecancha.png)
